@@ -41,6 +41,6 @@ def generate_convex_polygon(n=6):
     return points
 
 
-def center_polygon(points, at=(0.5, 0.5)):
-    mid = (np.max(points, axis=0) - np.min(points, axis=0))/2
-    return points - mid + np.array(at)
+def center_polygon(points):
+    mid = (np.max(points, axis=0) + np.min(points, axis=0))/2
+    return points - mid + np.array([0.5, 0.5])

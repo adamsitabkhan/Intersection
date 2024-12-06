@@ -4,11 +4,7 @@ import matplotlib.patches as patches
 
 from utils import generate_convex_polygon, center_polygon
 
-points = generate_convex_polygon(n=12)
-print(points)
-print(np.max(points, axis=0))
-print(np.min(points, axis=0))
-print((np.max(points, axis=0) - np.min(points, axis=0))/2)
+points = generate_convex_polygon(n=6)
 points = center_polygon(points)
 
 fig, ax = plt.subplots()
