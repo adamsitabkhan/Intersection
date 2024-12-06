@@ -1,7 +1,6 @@
 import numpy as np
 import numpy.random as rand
 
-
 def generate_convex_polygon(n=6):
     if n < 3:
         return None
@@ -41,6 +40,26 @@ def generate_convex_polygon(n=6):
     return points
 
 
+def make_polygon_isotropic(points, sd=0.25):
+    from sklearn.decomposition import PCA
+    
+    pca = PCA(n_components=2)
+    points_centered = points - np.mean(points, axis=0)
+    pca.fit(points_centered)
+
+    transformed_points = pca.transform(points_centered)
+    variance = np.var(transformed_points, axis=0)  # Variance along each principal component
+    scaling_factors = sd / np.sqrt(variance)  # Scale to unit variance
+    transformed_points_scaled = transformed_points * scaling_factors
+
+    rescaled_points = pca.inverse_transform(transformed_points_scaled) + np.mean(points, axis=0)
+    return rescaled_points
+
+
 def center_polygon(points):
     mid = (np.max(points, axis=0) + np.min(points, axis=0))/2
     return points - mid + np.array([0.5, 0.5])
+
+
+def transform_polygon(points):
+    return center_polygon(make_polygon_isotropic(points))

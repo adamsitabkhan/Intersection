@@ -1,11 +1,12 @@
 import numpy as np
+import numpy.linalg as la
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-from utils import generate_convex_polygon, center_polygon
+from utils import generate_convex_polygon, transform_polygon
 
 points = generate_convex_polygon(n=6)
-points = center_polygon(points)
+points = transform_polygon(points)
 
 fig, ax = plt.subplots()
 polygon = patches.Polygon(points, closed=True, edgecolor='black', facecolor='cyan')
