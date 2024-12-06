@@ -1,2 +1,2 @@
-# intersection
-Training multiple robots to navigate through randomly generated intersections without crashing
+# Intersection
+Experimenting with multiple-robot navigation through randomly generated intersections
